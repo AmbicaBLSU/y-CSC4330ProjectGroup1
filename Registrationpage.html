@@ -1,0 +1,212 @@
+<html>
+<head>
+    <title>Registration Form</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            padding: 0;
+            margin: 0;
+            background-image: url('lsu4.jpeg');
+            background-size: cover;
+        }
+
+        form {
+            background-color: white;
+            max-width: 700px;
+            margin: 50px auto;
+            padding: 20px;
+            box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+            border-radius: 5px;
+            text-align: center;
+        }
+
+        h1 {
+            color: #666;
+            font-weight: bolder;
+            margin-bottom: 20px;
+            position: center;
+            padding-top: 150px;
+        }
+
+        input[type="text"], input[type="email"], input[type="password"] {
+            display: block;
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 20px;
+            border-radius: 5px;
+            border: none;
+            box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.1);
+            font-size: 12px;
+            color: #666;
+        }
+
+        input[type="submit"], input[type="reset"] {
+            background-color: #3498db;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            padding: 10px;
+            font-size: 16px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+
+            input[type="submit"]:hover {
+                background-color: #2980b9;
+            }
+
+            input[type="reset"]:hover {
+                background-color: #2980b9;
+            }
+    </style>
+    <script type="text/javascript">function validate() {
+            re = /^[A-Za-z]+$/;//STATIC REGULAR EXPRESSIONS
+            if (!re.test(document.registration.fname.value))
+                window.alert("invalid name");
+            if (!re.test(document.registration.lname.value))
+                window.alert("invalid name");
+            if (!re.test(document.registration.uname.value))
+                window.alert("invalid name");
+            if (document.registration.pwd.value.length < 6)
+                window.alert("password is too short");
+            if (document.registration.Mobile_Number.value.length < 10)
+                window.alert("phone number not valid!!");
+        }
+        function validateForm() {
+            var password = document.forms["registration"]["password"].value;
+            var confirmPassword = document.forms["registration"]["confirmPassword"].value;
+            if (password != confirmPassword) {
+                alert("Password and Confirm Password do not match");
+                return false;
+            }
+        }
+    </script>
+</head>
+ 
+<body>
+<h1 align="center" style="color:yellow"; font-weight:bold;">REGISTRATION FORM</h1>
+
+ 
+<form name="registration" onsubmit="return validateForm()" method="post">
+<table align="CENTER" cellpadding = "12">
+ 
+<!----- First Name ---------------------------------------------------------->
+<tr>
+<td>First Name</td>
+<td><input type="text" name="fname" size="50" placeholder="enter your first name here...."/>
+</td>
+</tr>
+ 
+<!----- Last Name ---------------------------------------------------------->
+<tr>
+<td>Last Name</td>
+<td><input type="text" name="lname" size="50" placeholder="enter your last name here...."/>
+</td>
+</tr>
+
+<!----- User Name ---------------------------------------------------------->
+<tr>
+<td>User Name</td>
+<td><input type="text" name="uname" size="50" placeholder="enter your user name here...."/>
+</td>
+</tr>
+
+<!----- Password ---------------------------------------------------------->
+<tr>
+<td>Password</td>
+<td><input type="password" name="password" size="50" placeholder="enter your password here...."/>
+</td>
+</tr>
+    <!----- Password ---------------------------------------------------------->
+    <td>Confirm Password</td>
+    <td>
+        <input type="password" name="confirmPassword" size="50" placeholder="Re-enter your password here...." />
+    </td>
+</tr>
+ 
+<!----- Date Of Birth -------------------------------------------------------->
+
+<tr>
+    <td>
+        <label for="dob">Date of Birth:</label>
+    </td>
+    <td><input type="date" id="dob" name="dob"></td>
+    
+    
+</tr>
+ 
+<!----- Email Id ---------------------------------------------------------->
+<tr>
+<td>Email Id</td>
+<td><input type="text" name="email" size="50" pattern="^[a-zA-Z0-9._%+-]+@lsu\.edu$" required placeholder="enter your email id here...."/></td>
+</tr>
+ 
+<!----- Mobile Number ---------------------------------------------------------->
+<tr>
+<td>Mobile Number</td>
+<td>
+<input type="text" name="Mobile_Number" size="50" placeholder="enter your mobile number here...." />
+</td>
+</tr>
+ 
+<!----- Gender ----------------------------------------------------------->
+<tr>
+<td>Gender</td>
+<td>
+Male <input type="radio" name="Gender" value="Male" />
+Female <input type="radio" name="Gender" value="Female" />
+</td>
+</tr>
+ 
+<!----- Address ---------------------------------------------------------->
+<tr>
+<td>Address <br /><br /><br /></td>
+<td><textarea name="Address" rows="4" cols="50" placeholder="enter your address here...."></textarea></td>
+</tr>
+ 
+<!----- City ---------------------------------------------------------->
+<tr>
+<td>City</td>
+<td><input type="text" name="City" size="50" placeholder="enter your city here...." />
+</td>
+</tr>
+ 
+<!----- Pin Code ---------------------------------------------------------->
+<tr>
+<td>Zip Code</td>
+<td><input type="text" name="Pin_Code" size="50" placeholder="enter your zipcode here...."/>
+</td>
+</tr>
+ 
+<!----- State ---------------------------------------------------------->
+<tr>
+<td>State</td>
+<td><input type="text" name="State" size="50" placeholder="enter your state here...."/>
+</td>
+</tr>
+ 
+<!----- Country ---------------------------------------------------------->
+<tr>
+<td>Country</td>
+<td><input type="text" name="Country" value="USA" readonly="readonly" placeholder="enter your country here...."/></td>
+</tr>
+  <!----- Role---------------------------------------------------------->
+  <tr>
+<td>Role</td>
+<td><select>
+<option></option>
+<option>Student</option>
+<option>Tutor</option></td>
+</tr>
+<!----- Submit and Reset ------------------------------------------------->
+<tr>
+<td colspan="2" align="center">
+<input type="submit" value="Submit" onclick="validate()">
+<input type="reset" value="Reset">
+</td>
+</tr>
+</table>
+</form>
+</body>
+</html>
