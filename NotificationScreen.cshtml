@@ -1,0 +1,14 @@
+﻿<header>
+    <font face="Lucida Calligraphy">
+        <h2>Welcome to Online University Tutoring Center</h2>
+    </font>
+</header>
+<div id="Notifications" class="tabcontent">
+    <h3>Notifications</h3>
+    @using (Html.BeginForm("NotificationMethod", "Home", FormMethod.Get))
+    {
+        @Html.AntiForgeryToken()
+        <button type="submit" class="btn btn-primary" style="background-color:black;margin-left:auto;margin-right:auto;display:block;margin-top:10%;margin-bottom:0%">Check Notifications</button>
+
+    }
+</div>
