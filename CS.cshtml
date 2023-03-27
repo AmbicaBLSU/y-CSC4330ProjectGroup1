@@ -1,0 +1,256 @@
+﻿@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Online Tutoring Center - Student Home Page</title>
+    <style>
+
+        body {
+            background-color: #f2f2f2;
+            margin: 0;
+            padding: 0;
+            font-family: Arial, sans-serif;
+            font-size: 16px;
+            line-height: 1.5;
+            color: #333;
+        }
+
+        header {
+            background-color: #333;
+            color: #fff;
+            padding: 20px;
+            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24);
+            text-align: center;
+        }
+
+        h1 {
+            margin: 0;
+            font-size: 36px;
+            font-weight: bold;
+            letter-spacing: 3px;
+            color: white;
+            text-align: center;
+        }
+
+        nav ul {
+            list-style: none;
+            margin: 0;
+            padding: 0;
+        }
+
+        nav li {
+            display: inline-block;
+            margin-right: 20px;
+        }
+
+        nav a {
+            color: #fff;
+            text-decoration: none;
+        }
+
+            nav a:hover {
+                color: #808080;
+            }
+
+        main {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        section {
+            margin-bottom: 40px;
+            background-color: #f5f5f5;
+            padding: 50px;
+        }
+
+            section h2 {
+                font-size: 24px;
+                margin-bottom: 20px;
+                text-align: center;
+            }
+
+
+            section ul {
+                list-style: none;
+                margin: 0;
+                padding: 0;
+                text-align: center;
+            }
+
+
+            section li {
+                margin-bottom: 10px;
+                display: inline-block;
+                margin-right: 20px;
+            }
+
+            section a {
+                color: #333;
+                text-decoration: none;
+            }
+
+                section a:hover {
+                    color: #666;
+                }
+
+        footer {
+            background-color: #333;
+            color: #fff;
+            padding: 20px;
+            text-align: center;
+        }
+
+        /* Style for the department boxes */
+        .department {
+            background-color: #fff;
+            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24);
+            padding: 30px;
+            text-align: center;
+            width: 200px;
+            height: 200px;
+            margin: 20px;
+            display: inline-block;
+        }
+
+            /* Style for the department box links */
+            .department a {
+                text-decoration: none;
+                color: #333;
+                font-weight: bold;
+                border-bottom: 2px solid transparent;
+                transition: border-color 0.3s ease;
+            }
+
+                .department a:hover {
+                    border-bottom-color: #333;
+                }
+
+        h2 {
+            font-size: 28px;
+            color: #333;
+            margin-top: 0;
+        }
+
+        /* CSS for Available Tutors section */
+        .tutors {
+            display: flex;
+            flex-direction: row;
+            justify-content: center;
+            align-items: center;
+            flex-wrap: wrap;
+        }
+
+        .tutor {
+            width: 300px;
+            margin: 20px;
+            padding: 20px;
+            background-color: #f2f2f2;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+            text-align: center;
+        }
+
+            .tutor h3 {
+                margin-top: 0;
+            }
+
+            .tutor p {
+                margin-bottom: 10px;
+            }
+
+            .tutor button {
+                background-color: #4CAF50;
+                color: white;
+                border: none;
+                padding: 10px 20px;
+                text-align: center;
+                text-decoration: none;
+                display: inline-block;
+                font-size: 16px;
+                margin-top: 10px;
+                border-radius: 5px;
+                cursor: pointer;
+            }
+
+        section {
+            padding: 20px;
+        }
+
+    </style>
+
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+</head>
+<body>
+    <header>
+        <h1>Welcome to the Online Tutoring Center</h1>
+        <nav>
+            <ul>
+                <li><a href="#"><h3>Home</h3></a></li>
+                <li><a href="#"><h3>Contact Coordinator</h3></a></li>
+                <li><a href="#"><h3>My Appointments</h3></a></li>
+                <li><a href="#"><h3>Profile</h3></a></li>
+            </ul>
+        </nav>
+    </header>
+    <section>
+        <h2>Available Tutors</h2>
+        <div class="tutors">
+            <div class="tutor">
+                <h3>Professor Name: John Doe</h3>
+                <p>Course: Introduction to Computer Science</p>
+                <p>Rating: 4.5/5</p>
+                <p>Email: johndoe@lsu.edu</p>
+                <button>Check Availability</button>
+            </div>
+            <div class="tutor">
+                <h3>Professor Name: Jane Smith</h3>
+                <p>Course: Introduction to Python</p>
+                <p>Rating: 4.8/5</p>
+                <p>Email: janesmith@lsu.edu</p>
+                <button>Check Availability</button>
+            </div>
+            <div class="tutor">
+                <h3>Professor Name: Robert Johnson</h3>
+                <p>Course: Data Structures using C++</p>
+                <p>Rating: 4.6/5</p>
+                <p>Email: robertjohnson@lsu.edu</p>
+                <button>Check Availability</button>
+            </div>
+            <div class="tutor">
+                <h3>Professor Name: Sarah Kim</h3>
+                <p>Course: Introduction to Database Mangement System</p>
+                <p>Rating: 4.9/5</p>
+                <p>Email: sarahkim@lsu.edu</p>
+                <button>Check Availability</button>
+            </div>
+            <div class="tutor">
+                <h3>Professor Name: Rose</h3>
+                <p>Course: Data Structures using java</p>
+                <p>Rating: 4.9/5</p>
+                <p>Email: rose@lsu.edu</p>
+                <button>Check Availability</button>
+            </div>
+            <div class="tutor">
+                <h3>Professor Name: Jack</h3>
+                <p>Course: Introduction to C Language>
+                <p>Rating: 4.9/5</p>
+                <p>Email: jack@lsu.edu</p>
+                <button>Check Availability</button>
+            </div>
+        </div>
+    </section>
+    <footer>
+        <p>&copy; 2023 Online Tutoring Center. All rights reserved.</p>
+    </footer>
+</body>
+
+</html>
+
+
