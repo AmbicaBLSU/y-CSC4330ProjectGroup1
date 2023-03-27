@@ -1,0 +1,226 @@
+﻿@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Registration Form</title>
+
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            padding: 0;
+            margin: 0;
+            background-image: url('/Images/lsu4.jpeg');
+            background-size: cover;
+        }
+
+        form {
+            background-color: white;
+            max-width: 700px;
+            margin: 50px auto;
+            padding: 20px;
+            box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+            border-radius: 5px;
+            text-align: center;
+        }
+
+        h1 {
+            color: #666;
+            font-weight: bolder;
+            margin-bottom: 20px;
+            position: center;
+            padding-top: 150px;
+        }
+
+        input[type="text"], input[type="email"], input[type="password"] {
+            display: block;
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 20px;
+            border-radius: 5px;
+            border: none;
+            box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.1);
+            font-size: 12px;
+            color: #666;
+        }
+
+        input[type="submit"], input[type="reset"] {
+            background-color: #3498db;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            padding: 10px;
+            font-size: 16px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+
+            input[type="submit"]:hover {
+                background-color: #2980b9;
+            }
+
+            input[type="reset"]:hover {
+                background-color: #2980b9;
+            }
+    </style>
+    <script type="text/javascript">
+
+
+        function validateForm() {
+            var password = document.forms["registration"]["password"].value;
+            var confirmPassword = document.forms["registration"]["confirmPassword"].value;
+            if (password != confirmPassword) {
+                alert("Password and Confirm Password do not match");
+                return false;
+            }
+            if (document.getElementById("user-type").value === "Select") {
+                document.getElementById("errorRow").style.display = "table-row";
+                alert("Please select the User type");
+                return false;
+            }
+            if (document.registration.password.value.length < 6) {
+                window.alert("password is too short");
+                return false
+            }
+            
+        }
+    </script>
+    <script>
+    $(document).ready(function () {
+        $('#registration').on('submit', function (e) {
+        e.preventDefault();
+            if (validateForm()) {
+            window.location.href = '@Url.Action("Homepage", "Home")';}
+    });
+});
+    </script>
+</head>
+
+<body>
+
+    <h1 align="center" style="color:yellow" ; font-weight:bold;">REGISTRATION FORM</h1>
+
+    <form name="registration"  method="post">
+        <table align="CENTER" cellpadding="12">
+
+            <!----- First Name ---------------------------------------------------------->
+            <tr>
+                <td>FirstName</td>
+                <td>
+                    <input type="text" name="fname" size="50" placeholder="enter your first name here...." />
+                </td>
+            </tr>
+
+            <!----- Last Name ---------------------------------------------------------->
+            <tr>
+                <td>LastName</td>
+                <td>
+                    <input type="text" name="lname" size="50" placeholder="enter your last name here...." />
+                </td>
+
+            </tr>
+            <tr>
+                <!----- Last Name ---------------------------------------------------------->
+            <tr>
+                <td>UserName</td>
+                <td>
+                    <input type="text" name="Uname" size="50" placeholder="enter your user name here...." />
+                </td>
+
+            </tr>
+
+            <tr>
+                <td>Password</td>
+                <td><input type="password" name="password" size="50" placeholder="enter your password here...." /></td>
+            </tr>
+
+            <!-- Confirm Password -->
+            <tr>
+                <td>Confirm Password</td>
+                <td><input type="password" name="confirmPassword" size="50" placeholder="Re-enter your password here...." /></td>
+            </tr>
+
+            <!-- Date Of Birth -->
+            <tr>
+                <td><label for="dob">Date of Birth:</label></td>
+                <td><input type="date" id="dob" name="dob" /></td>
+            </tr>
+
+            <!-- Email Id -->
+            <tr>
+                <td>Email Id</td>
+                <td><input type="email" name="email" size="50" pattern="^[a-zA-Z0-9._%+-]+@@lsu\.edu$" required placeholder="enter your email id here...." /></td>
+            </tr>
+
+            <tr>
+                <td><label for="user-type">User Type:</label></td>
+                <td>
+                    <select id="user-type" name="user-type">
+                        <option value="Select">Select</option>
+                        <option value="Tutor">Tutor</option>
+                        <option value="Student">Student</option>
+                    </select>
+                </td>
+            </tr>
+
+            <tr id="department-row" style="display: none;">
+                <td><label for="department">Department Name:</label></td>
+                <td><input type="text" id="department-text" name="department"></td>
+            </tr>
+            <tr id="course-row" style="display: none;">
+                <td><label for="course">Course:</label></td>
+                <td><input type="text" id="course-text" name="course"></td>
+            </tr>
+            <tr id="major-row" style="display: none;">
+                <td><label for="major">Major:</label></td>
+                <td><input type="text" id="major-text" name="major"></td>
+            </tr>
+
+            <tr id="errorRow" style="display: none;">
+                <td colspan="2" style="color: red;">Please select a user type.</td>
+            </tr>
+
+            <!-- Submit and Reset -->
+            <tr>
+                <td colspan="2" align="center">
+                    <!--  <input type="submit" value="Submit">-->
+                    <button type="submit" id="submit-btn">Submit</button>
+                    <input type="reset" value="Reset">
+                </td>
+
+
+            </tr>
+        </table>
+    </form>
+    <script>
+        var userTypeDropdown = document.getElementById("user-type");
+        var departmentRow = document.getElementById("department-row");
+        var courseRow = document.getElementById("course-row");
+        var majorRow = document.getElementById("major-row");
+        var errorRow = document.getElementById("errorRow");
+
+            userTypeDropdown.addEventListener("change", function ()    {
+            if (userTypeDropdown.value === "Select") {
+                departmentRow.style.display = "none";
+                courseRow.style.display = "none";
+                majorRow.style.display = "none";
+                errorRow.style.display = "table-row";
+            } else if (userTypeDropdown.value === "Tutor") {
+                departmentRow.style.display = "table-row";
+                courseRow.style.display = "table-row";
+                majorRow.style.display = "none";
+                errorRow.style.display = "none";
+            } else if (userTypeDropdown.value === "Student") {
+                departmentRow.style.display = "none";
+                courseRow.style.display = "none";
+                majorRow.style.display = "table-row";
+                errorRow.style.display = "none";
+            }
+        });</script>
+</body>
+</html>
+
+
