@@ -1,0 +1,161 @@
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mailbox</title>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500&display=swap" rel="stylesheet">
+    <style>
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Roboto', sans-serif;
+            background-color: #f5f5f5;
+            margin: 0;
+            padding: 0;
+        }
+
+        .mailbox {
+            max-width: 800px;
+            margin: 50px auto;
+            background-color: #ffffff;
+            border-radius: 10px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            padding: 20px;
+        }
+
+            .mailbox h1 {
+                font-size: 32px;
+                font-weight: 500;
+                margin-bottom: 20px;
+            }
+
+            .mailbox form {
+                display: flex;
+                flex-direction: column;
+            }
+
+            .mailbox input, .mailbox textarea {
+                padding: 10px;
+                border: 1px solid #ccc;
+                border-radius: 5px;
+                font-size: 16px;
+                margin-bottom: 15px;
+            }
+
+            .mailbox textarea {
+                resize: vertical;
+                min-height: 100px;
+            }
+
+            .mailbox button {
+                background-color: #4CAF50;
+                border: none;
+                color: #fff;
+                padding: 10px 20px;
+                font-size: 18px;
+                border-radius: 5px;
+                cursor: pointer;
+                transition: background-color 0.2s;
+            }
+
+                .mailbox button:hover {
+                    background-color: dimgray;
+                }
+
+        header {
+            background-color: #333;
+            color: #fff;
+            padding: 20px;
+            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24);
+            text-align: center;
+        }
+
+        
+        footer {
+            background-color: #333;
+            color: white;
+            text-align: center;
+            padding: 1rem 0;
+        }
+
+            
+            footer p {
+                margin: 0;
+                padding: 0.5rem 0;
+            }
+
+        nav ul {
+            list-style-type: none;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+        }
+
+            nav ul li {
+                margin: 0 1rem;
+            }
+
+                nav ul li a {
+                    text-decoration: none;
+                    color: white;
+                    
+                }
+
+                    nav ul li a:hover {
+                        color: #ccc;
+                    }
+
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Welcome to the Online Tutoring Center </h1>
+        <nav>
+            <ul>
+                <li><a href="#"><h3>Home</h3></a></li>
+                <li><a href="ContactCoordinator"><h3>Contact Coordinator</h3></a></li>
+                <li><a href="#"><h3>My Appointments</h3></a></li>
+                <li><a href="#"><h3>Profile</h3></a></li>
+                <li><a href="Homepage" style="color: red;"><h3>Logout</h3></a></li>
+            </ul>
+        </nav>
+    </header>
+    <div class="mailbox">
+        <h1>Contact Coordinator</h1>
+        <form id="contact-form">
+            <input type="text" name="name" placeholder="Enter your User Name" required>
+            <input type="email" name="email" placeholder="Enter your Email" required>
+            <textarea name="message"  placeholder="Your Message" required></textarea>
+            <button type="submit">Send Message</button>
+        </form>
+    </div>
+    <footer>
+        <p>&copy; 2023 Online Tutoring Center. All rights reserved.</p>
+    </footer>
+    <script>
+        function validateEmail(email) {
+            const regex = /^[\w-]+(\.[\w-]+)*@@university\.edu$/;
+            return regex.test(email);
+        }
+
+        document.getElementById('contact-form').addEventListener('submit', function (event) {
+            event.preventDefault();
+            const emailInput = event.target.elements.email;
+            if (!validateEmail(emailInput.value)) {
+                alert('Please enter a valid university email address.');
+                return;
+            }
+            alert('Message sent!');
+        });
+    </script>
+
+</body>
+</html>
