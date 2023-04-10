@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Upcoming Appointments</title>
+    <link href="https://fonts.googleapis.com/css?family=Roboto:400,700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+        }
+
+        /* Style the header */
+        header {
+            background-color: #333;
+            color: #fff;
+            padding: 20px;
+            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24);
+            text-align: center;
+        }
+
+        /* Style the navigation menu */
+        nav ul {
+            list-style-type: none;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+        }
+
+        nav li {
+            margin: 0 10px;
+        }
+
+            nav li a {
+                color: #fff;
+                text-decoration: none;
+            }
+
+                nav li a:hover {
+                    color: dimgrey;
+                }
+
+        /* Style the date selection section */
+        section {
+            padding: 20px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .tutor form {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            margin-bottom: 20px;
+        }
+
+        .tutor input[type="date"] {
+            padding: 10px;
+            margin-right: 10px;
+        }
+
+        .tutor button[type="submit"] {
+            padding: 10px;
+            background-color: rgb(0, 196, 65);
+            color: #fff;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+            .tutor button[type="submit"]:hover {
+                background-color: #555;
+            }
+
+        table {
+            border-collapse: collapse;
+            margin-top: 20px;
+            width: 100%;
+        }
+
+            table th, table td {
+                padding: 10px;
+                text-align: center;
+                border: 1px solid #ccc;
+            }
+
+            table th {
+                background-color: #f2f2f2;
+            }
+
+        h2 {
+            text-align: center;
+        }
+
+        label {
+            display: block;
+            margin-top: 20px;
+        }
+
+        input[type="text"] {
+            padding: 10px;
+            border-radius: 5px;
+            border: 1px solid #ccc;
+            width: 100%;
+            box-sizing: border-box;
+            margin-bottom: 20px;
+        }
+
+        button[type="submit"] {
+            padding: 10px;
+            background-color: rgb(0, 196, 65);
+            color: #fff;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+            button[type="submit"]:hover {
+                background-color: #555;
+            }
+
+        /* Style the footer */
+        footer {
+            background-color: #333;
+            color: #fff;
+            padding: 20px;
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Welcome to the Online Tutoring Center </h1>
+        <nav>
+            <ul>
+                <li><a href="#"><h3>Home</h3></a></li>
+                <li><a href="ContactCoordinator"><h3>Contact Coordinator</h3></a></li>
+                <li><a href="#"><h3>My Appointments</h3></a></li>
+                <li><a href="#"><h3>Profile</h3></a></li>
+                <li><a href="Homepage" style="color: red;"><h3>Logout</h3></a></li>
+            </ul>
+        </nav>
+    </header>
+    <div class="container">
+
+        @model SlotsViewModel
+        @using (Html.BeginForm("TutorView", "Home", FormMethod.Post, new { @class = "my-form" }))
+        {
+            @if (Model.Requests.Count != 0)
+            {
+                @for (int i = 0; i < Model.Requests.Count; i++)
+                {
+                    <div class="form-group">
+                        <h4>@Model.Requests[i]</h4>
+                    </div>
+                }
+            }
+            else
+            {
+                <p>There are no upcoming appointments</p>
+            }
+        }
+
+       
+    </div>
+
+    <footer>
+        <p> &copy; 2023 Online Tutoring Center. All rights reserved.</p>
+    </footer>
+</body>
+
+</html>
