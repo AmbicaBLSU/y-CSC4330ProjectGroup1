@@ -17,6 +17,27 @@ namespace EFCode.Controllers
         {
             return View();
         }
+        [HttpPost]
+        public IActionResult DisplaySlots(DateTime date,string name, SlotsViewModel model, string Studentname)
+        {
+            GetSlots s = new GetSlots();
+            var timeSlots= s.ConnectToDatabase(date, name);
+            model.Name = name;
+            model.Date = date;
+            model.Value = timeSlots;
+            model.StudentUserName = Studentname;
+            // var timeSlots = GetTimeSlots(date);
+            /*var model = new SlotsViewModel
+            {
+                Name = name,
+                Date = date,
+                Value = timeSlots
+            }; */
+            return View(model);
+            //return View();
+            // Do something with the date value
+            //return View();
+        }
 
         public IActionResult Privacy()
         {
