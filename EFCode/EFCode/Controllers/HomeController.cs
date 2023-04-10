@@ -12,6 +12,16 @@ namespace EFCode.Controllers
         {
             _logger = logger;
         }
+        public IActionResult UpcomingAppointments(SlotsViewModel model, string TutorName)
+        {
+            CheckUpcomingAppointments c = new CheckUpcomingAppointments();
+            List<string> strings = new List<string>();
+
+            strings = c.ConnectToDatabase(TutorName);
+            model.Requests = strings;
+            return View(model);
+            //return RedirectToAction("Homepage", "Home");
+        }
 
         public IActionResult Index()
         {
