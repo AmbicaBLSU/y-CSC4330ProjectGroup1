@@ -1,5 +1,5 @@
-﻿@model SEProjectCode.Models.Homepagemodel
-
+﻿<!--SEProjectCode.Models.Homepagemodel -->
+@model EFCode.Models.Homepagemodel
 <!DOCTYPE html>
 <html>
 <head>
@@ -26,11 +26,11 @@
         /* Style the tab */
         .tab {
             float: left;
-            padding: 0px 12px;
+            padding: 20px 12px;
             border: 1px solid #ccc;
             width: 70%;
             border-left: none;
-            height: 250px;
+            height: 275px;
             background-color: #fff;
             margin: 100px auto;
             padding: 20px;
@@ -68,11 +68,11 @@
 
         .tabcontent {
             float: left;
-            padding: 0px 12px;
+            padding: 20px 12px;
             border: 1px solid #ccc;
             width: 70%;
             border-left: none;
-            height: 250px;
+            height: 275px;
             background-color: #fff;
             margin: 100px auto;
             padding: 20px;
@@ -80,38 +80,37 @@
             box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
             width: 600px;
         }
-      
+
         /* Style the footer */
-            footer {
-                background-color: #808080;
-                background-image: url('/Images/lsu5.jpeg');
-                position: fixed;
-                bottom: 0px;
-                left: 0px;
-                right: 0px;
-                width: 100%;
-                color: white;
-                height: 12%;
-            }
+        footer {
+            background-color: #808080;
+            background-image: url('/Images/lsu5.jpeg');
+            position: fixed;
+            bottom: 0px;
+            left: 0px;
+            right: 0px;
+            width: 100%;
+            color: white;
+            height: 12%;
+        }
 
         h3 {
             text-align: center;
             color: #333;
             margin-top: 0;
         }
+
         #Login label {
             display: inline-block;
             width: 200px; /* adjust the width as needed */
             text-align: match-parent;
-            
         }
-
-       
     </style>
 </head>
 <body>
 
-    <script>function openMenu(evt, menuName) {
+    <script>
+        function openMenu(evt, menuName) {
             var i, tablinks;
             var tabcontent = document.getElementsByClassName("tabcontent");
             for (i = 0; i < tabcontent.length; i++) {
@@ -130,7 +129,7 @@
 
     <header>
         <font face="Lucida Calligraphy">
-        <h2>Welcome to Online University Tutoring Center</h2>
+            <h2>Welcome to Online University Tutoring Center</h2>
         </font>
     </header>
 
@@ -142,19 +141,34 @@
 
     <div id="Welcome" class="tabcontent">
         <h3>Welcome</h3>
-        <p> This is helpful for both students and tutors to book their appointments and easy to communicate with the coordinator . </p>
+        <font face="Lucida Calligraphy">
+            <p> To encourage students in achieving their academic objectives, this tutoring website offers professional and individualized tutoring services. The website offers flexible scheduling and reasonable costs since it thinks that education should be available to everyone. The subjects that are provided are math, computer science, English, and IT. All ages and intellectual levels of students can benefit from the tutoring services. </p>
+
     </div>
+
     <div id="Login" class="tabcontent">
         <h3>Login</h3><br>
-        @using (Html.BeginForm("Student_Home", "Home", FormMethod.Post))
+        @using (Html.BeginForm("Login", "Home", FormMethod.Post))
         {
-            <label for="username">UserName:</label>
-            <input type="text" id="username" name="username" />
+            @Html.AntiForgeryToken()
 
-            <label for="password">Password:</label>
-            <input type="password" id="password" name="password" /><br>
+            <div class="form-group">
+                @Html.LabelFor(model => model.Username, new { @class = "control-label" })
+                @Html.EditorFor(model => model.Username, new { htmlAttributes = new { @class = "form-control" } })
 
-            <button type="submit">Log in</button>
+            </div>
+
+            <div class="form-group">
+                @Html.LabelFor(model => model.Password, new { @class = "control-label" })
+                @Html.PasswordFor(model => model.Password, new { @class = "form-control" })
+                @Html.ValidationMessageFor(model => model.Password)
+            </div>
+            <br>
+            <button type="submit" class="btn btn-primary">Login</button>
+            @if (!string.IsNullOrEmpty(ViewBag.ErrorMessage))
+            {
+                <div class="alert alert-danger">@ViewBag.ErrorMessage</div>
+            }
         }
     </div>
     <div id="Register" class="tabcontent">

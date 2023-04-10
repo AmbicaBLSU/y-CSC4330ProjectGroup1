@@ -1,0 +1,198 @@
+﻿@model SlotsViewModel
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Online Tutoring Center - Student Home Page</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f4;
+        }
+
+        h2 {
+            font-size: 28px;
+            color: #333;
+            margin-top: 0;
+        }
+
+        header,
+        footer {
+            background-color: #333;
+            color: white;
+            text-align: center;
+            padding: 1rem 0;
+        }
+
+            header h1,
+            footer p {
+                margin: 0;
+                padding: 0.5rem 0;
+            }
+
+        nav ul {
+            list-style-type: none;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+        }
+
+            nav ul li {
+                margin: 0 1rem;
+            }
+
+                nav ul li a {
+                    text-decoration: none;
+                    color: white;
+                    font-weight: bold;
+                }
+
+                    nav ul li a:hover {
+                        color: #ccc;
+                    }
+
+        section {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+            width: 100%;
+            padding: 2rem;
+            box-sizing: border-box;
+            margin: 0 auto;
+            min-height: 70vh;
+        }
+
+            section > div {
+                flex: 1;
+                margin: 0 1rem;
+                max-width: calc(33.33% - 2rem);
+                box-sizing: border-box;
+            }
+
+        .departments {
+            display: flex;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            gap: 1rem;
+            margin: 0 -1rem;
+        }
+
+        .department {
+            flex: 0 0 auto;
+            background-color: white;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+            margin: 1rem;
+            padding: 2rem;
+            text-align: center;
+            width: 300px;
+            position: relative;
+        }
+
+            .department img {
+                max-width: 100%;
+                height: auto;
+            }
+
+            .department a {
+                display: block;
+                font-size: 1.2rem;
+                color: #333;
+                text-decoration: none;
+                margin-bottom: 1rem;
+            }
+
+        h2 {
+            font-size: 28px;
+            color: #333;
+            margin-top: 0;
+            text-align: center;
+            padding: 10px 0px;
+        }
+
+        .department a:hover {
+            color: #666;
+        }
+
+        .btn {
+            background-color: #4CAF50;
+            color: white;
+            text-align: center;
+            border: none;
+            border-radius: 5px;
+            padding: 0.5rem 1rem;
+            cursor: pointer;
+            font-size: 1rem;
+        }
+
+            .btn:hover {
+                background-color: dimgrey;
+            }
+    </style>
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!---->
+    <link rel="stylesheet" href="~/styles.css">
+</head>
+<body>
+    <header>
+        <h1>Welcome to the Online Tutoring Center </h1>
+        <nav>
+            <ul>
+                <li><a href="#"><h3>Home</h3></a></li>
+                <li><a href="ContactCoordinator"><h3>Contact Coordinator</h3></a></li>
+                <li><a href="#"><h3>My Appointments</h3></a></li>
+                <li><a href="#"><h3>Profile</h3></a></li>
+                <li><a href="Homepage" style="color: red;"><h3>Logout</h3></a></li>
+            </ul>
+        </nav>
+    </header>
+    <h2>Contents</h2>
+    <section>
+
+        <div class="department">
+            @using (Html.BeginForm("SendRequestsToTutor", "Home", FormMethod.Post, new { @class = "send-requests-form" }))
+            {
+                <input type="hidden" id="TutorName" name="TutorName" value="@Model.Name" />
+                <a href="@Url.Action("SendRequestsToTutor", "Home", new { TutorName = Model.Name })"><h3>View Requests</h3></a>
+            }
+        </div>
+
+        <div class="department">
+            @using (Html.BeginForm("UpcomingAppointments", "Home", FormMethod.Post))
+            {
+                <input type="hidden" id="TutorName" name="TutorName" value="@Model.Name" />
+                <a href="@Url.Action("UpcomingAppointments", "Home", new { TutorName = Model.Name })"><h3>Upcoming Events</h3></a>
+
+            }
+        </div>
+        <div class="department">
+            <a asp-controller="Home" asp-action="SelectDate"><h3>Set Availability</h3></a>
+        </div>
+        <div class="department">
+            <a href="#"><h3>Profile</h3></a>
+        </div>
+
+    </section>
+    @section scripts {
+        <script>
+            $(function () {
+                $('.submit-link').on('click', function (event) {
+                    event.preventDefault();
+                    $(this).closest('.send-requests-form').submit();
+                });
+            });
+        </script>
+    }
+
+    <footer>
+        <p> &copy; 2023 Online Tutoring Center. All rights reserved.</p>
+    </footer>
+</body>
+</html>
