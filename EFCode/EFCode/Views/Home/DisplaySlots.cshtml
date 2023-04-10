@@ -1,0 +1,123 @@
+@model SlotsViewModel
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Book Time Slot</title>
+	<style>
+		body {
+			font-family: Arial, sans-serif;
+			margin: 0;
+			padding: 0;
+			background-color: #f7f7f7;
+			display: flex;
+			flex-direction: column;
+			align-items: center;
+			justify-content: center;
+			min-height: 100vh;
+			text-align: center;
+			color: #444;
+		}
+
+		h1 {
+			font-size: 2rem;
+			margin: 1rem 0;
+			color: white;
+		}
+
+		p {
+			font-size: 1.0rem;
+			margin: 1rem 0;
+		}
+
+		form {
+			display: flex;
+			flex-direction: column;
+			align-items: center;
+			margin: 2rem 0;
+		}
+
+		label {
+			font-size: 1.5rem;
+			margin-bottom: 1rem;
+		}
+
+		input[type="hidden"],
+		button {
+			display: none;
+		}
+
+		button {
+			background-color: #4CAF50;
+			color: white;
+			text-align: center;
+			border: none;
+			border-radius: 5px;
+			padding: 0.5rem 1rem;
+			cursor: pointer;
+			font-size: 1rem;
+			margin-top: 1rem;
+			display: block;
+		}
+
+			button:hover {
+				background-color: dimgray;
+			}
+
+		.container {
+			max-width: 600px;
+			margin: 0 auto;
+			padding: 2rem;
+			background-color: #fff;
+			box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+			border-radius: 5px;
+		}
+
+		header {
+			background-color: #333;
+			color: #fff;
+			padding: 20px;
+			box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24);
+			text-align: center;
+		}
+
+		footer {
+			background-color: #333;
+			color: #fff;
+			padding: 20px;
+			text-align: center;
+		}
+	</style>
+</head>
+<body>
+	<header>
+		<h1>Book Time Slot</h1>
+	</header>
+	<div class="container">
+		@if (Model.Value.Count == 0)
+		{
+			<p>There are no available time slots for this date.</p>
+		}
+		else
+		{
+			@foreach (var timeSlot in Model.Value)
+			{
+				using (Html.BeginForm("BookTimeSlot", "Home", FormMethod.Post))
+				{
+					<div>
+						<label for="time-slot">@timeSlot</label>
+						<input type="hidden" name="name" value="@Model.Name" />
+						<input type="hidden" id="date" name="date" value="@Model.Date" />
+						<input type="hidden" id="Studentname" name="Studentname" value="@Model.StudentUserName" />
+
+						<input type="hidden" id="time-slot" name="timeSlot" value="@timeSlot" />
+						<button type="submit">Book</button>
+					</div>
+				}
+			}
+		}
+	</div>
+	<footer>
+		<p>&copy; 2023 University Tutorting Center. All rights reserved.</p>
+	</footer>
+</body>
+</html>
