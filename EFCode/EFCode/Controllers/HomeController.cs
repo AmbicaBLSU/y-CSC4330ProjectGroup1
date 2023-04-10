@@ -22,6 +22,37 @@ namespace EFCode.Controllers
         {
             return View();
         }
+        public ActionResult Registration(RegisterViewModel model)
+        {
+            if (model == null || (model.Username == default && model.Password == default && model.ConfirmPassword == default))
+            {
+                return View();
+            }
+            if (ModelState.IsValid)
+            {
+                RegistrationValidation rv = new RegistrationValidation();
+                rv.ConnectToDatabase(model);
+                // Do something with the model data
+                //TempData["MyModel"] = model;
+                return RedirectToAction("HomePage", "Home");
+            }
+            else
+            {
+                ModelState.AddModelError("", "No match");
+            }
+            
+            return View();
+        }
+        public IActionResult Homepage()
+        
+        {
+            if (TempData.TryGetValue("ErrorMessage", out object errorMessage))
+            {
+                // There's an error message, so display it to the user.
+                ViewBag.ErrorMessage = errorMessage;
+            }
+            return View();
+        }
 
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
         public IActionResult Error()
