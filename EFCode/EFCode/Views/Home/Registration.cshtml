@@ -1,0 +1,155 @@
+@model EFCode.Models.RegisterViewModel
+
+@{
+    ViewBag.Title = "Registration Page";
+}
+<!DOCTYPE html>
+<html>
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>@ViewBag.Title</title>
+
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #F6F7F8;
+            color: #636b6f;
+            font-size: 14px;
+            background-image: url('/Images/lsu4.jpeg');
+        }
+
+
+        h2 {
+            margin-top: 50px;
+            margin-bottom: 50px;
+            text-align: center;
+            font-size: 28px;
+            color: yellow;
+        }
+
+        form {
+            background-color: #FFFFFF;
+            margin: 50px auto;
+            padding: 40px;
+            width: 70%;
+            max-width: 600px;
+            border-radius: 5px;
+            box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 5px;
+            font-weight: bold;
+            color: #636b6f;
+        }
+
+        input[type="text"], input[type="email"], input[type="password"], select {
+            display: block;
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 20px;
+            border-radius: 5px;
+            border: none;
+            box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.1);
+            font-size: 16px;
+            color: #636b6f;
+        }
+
+        input[type="submit"] {
+            background-color: #4CAF50;
+            color: #FFFFFF;
+            border: none;
+            border-radius: 5px;
+            padding: 10px;
+            font-size: 16px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+
+            input[type="submit"]:hover {
+                background-color: #3E8E41;
+            }
+
+        input[type="reset"] {
+            background-color: #f44336;
+            color: #FFFFFF;
+            border: none;
+            border-radius: 5px;
+            padding: 10px;
+            font-size: 16px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+            margin-left: 10px;
+        }
+
+            input[type="reset"]:hover {
+                background-color: #d32f2f;
+            }
+    </style>
+
+</head>
+<body>
+
+    <h2>@ViewBag.Title</h2>
+
+    @using (Html.BeginForm("Registration", "Home", FormMethod.Post))
+    {
+        @Html.AntiForgeryToken()
+        <div class="form-group">
+            @Html.LabelFor(model => model.FirstName)
+            @Html.EditorFor(model => model.FirstName, new { htmlAttributes = new { @class = "form-control" } })
+        </div>
+        @Html.AntiForgeryToken()
+        <div class="form-group">
+            @Html.LabelFor(model => model.LastName)
+            @Html.EditorFor(model => model.LastName, new { htmlAttributes = new { @class = "form-control" } })
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.Username)
+            @Html.EditorFor(model => model.Username, new { htmlAttributes = new { @class = "form-control" } })
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.Password)
+            @Html.PasswordFor(model => model.Password, new { @class = "form-control" })
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.ConfirmPassword)
+            @Html.PasswordFor(model => model.ConfirmPassword, new { @class = "form-control" })
+            @Html.ValidationMessageFor(model => model.ConfirmPassword)
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.DateOfBirth)
+            @Html.EditorFor(model => model.DateOfBirth, new { htmlAttributes = new { @class = "form-control", type = "date" } })
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.Email)
+            @Html.EditorFor(model => model.Email, new { htmlAttributes = new { @class = "form-control", type = "email", pattern = "^\\S+@university\\.edu$", title = "Please enter a valid email address ending in @university.edu" } })
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.UserType)
+            @Html.DropDownListFor(model => model.UserType, new List<SelectListItem>
+        {
+        new SelectListItem { Text = "Tutor", Value = "Tutor" },
+        new SelectListItem { Text = "Student", Value = "Student" }
+        }, "Select User Type", new { @class = "form-control" })
+        </div>
+
+        <div class="form-group">
+            <input type="submit" value="Register">
+            <input type="reset" value="Reset">
+        </div>
+
+    }
+</body>
+</html>
