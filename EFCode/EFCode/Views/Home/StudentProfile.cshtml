@@ -1,0 +1,291 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Online Tutoring Center - Student Home Page</title>
+<style>
+body {
+background-color: #f2f2f2;
+}
+
+header {
+background-color: #333;
+color: #fff;
+padding: 20px;
+box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24);
+text-align:center;
+}
+
+nav ul {
+list-style: none;
+margin: 0;
+padding: 0;
+}
+
+nav li {
+display: inline-block;
+margin-right: 20px;
+}
+
+nav a {
+color: #fff;
+text-decoration: none;
+}
+
+nav a:hover {
+color: #808080;
+}
+
+main {
+max-width: 800px;
+margin: 0 auto;
+padding: 20px;
+text-align: center
+}
+
+section {
+margin-bottom: 40px;
+}
+
+section h2 {
+font-size: 24px;
+    margin-bottom: 20px;
+    text-align: center;
+
+
+}
+section fieldset {
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    padding: 20px;
+    margin: 0 auto;
+    max-width: 50%; /* Change this value to the width you want */
+}
+
+section ul {
+list-style: none;
+margin: 0;
+padding: 0;
+}
+a.container{
+   display: flex;
+   justify-content:center;
+   }
+
+section li {
+margin-bottom: 10px;
+}
+
+section a {
+color: #333;
+text-decoration: none;
+text-align: center;
+border: 10px solid #333;
+    padding: 10px;
+display: inline-block;
+    max-width: 50%;
+}
+
+section a:hover {
+color: #666;
+}
+
+footer {
+background-color: #333;
+color: #fff;
+padding: 20px;
+text-align: center;
+}
+p {
+    text-align: center;
+}
+
+
+header h1{
+text-align:center;
+}
+body {
+  background-color: #f2f2f2;
+}
+
+header {
+  background-color: #333;
+  color: #fff;
+  padding: 20px;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24);
+  text-align: center;
+}
+
+nav ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+nav li {
+  display: inline-block;
+  margin-right: 20px;
+}
+
+nav a {
+  color: #fff;
+  text-decoration: none;
+}
+
+nav a:hover {
+  color: #808080;
+}
+
+main {
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 20px;
+  text-align: center;
+}
+
+section {
+  margin-bottom: 40px;
+}
+
+section h2 {
+  font-size: 24px;
+  margin-bottom: 20px;
+  text-align: center;
+}
+
+section fieldset {
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  padding: 20px;
+  margin: 0 auto;
+  max-width: 50%;
+}
+
+section label {
+  display: inline-block;
+  width: 120px;
+  text-align: left;
+}
+
+section input[type="text"],
+section input[type="email"],
+section input[type="tel"],
+section select {
+  width: 300px;
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  margin-bottom: 10px;
+  font-size: 16px;
+}
+
+section input[type="submit"] {
+  background-color: #333;
+  color: #fff;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 5px;
+  font-size: 16px;
+  cursor: pointer;
+}
+
+section input[type="submit"]:hover {
+  background-color: #808080;
+}
+
+footer {
+  background-color: #333;
+  color: #fff;
+  padding: 20px;
+  text-align: center;
+}
+
+p {
+  text-align: center;
+}
+
+header h1 {
+  text-align: center;
+}
+
+
+</style>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="stylesheet" href="styles.css">
+</head>
+<body>
+<header>
+<h1>Welcome to the Online Tutoring Center </h1>
+<nav>
+<ul>
+<li><a href="#"><h3>Home</h3></a></li>
+<li><a href="#"><h3>Upcoming events</h3></a></li>
+<li><a href="#"><h3>Set availability</h3></a></li>
+<li><a href="#"><h3>Profile</h3></a></li>
+</ul>
+</nav>
+</header>
+
+<section>
+
+<script>
+var inst = mobiscroll.eventcalendar('#demo-desktop-month-view', {
+    theme: 'ios',
+    themeVariant: 'light',
+    clickToCreate: false,
+    dragToCreate: false,
+    dragToMove: false,
+    dragToResize: false,
+    eventDelete: false,
+    view: {
+        calendar: { labels: true }
+    },
+    onEventClick: function (event, inst) {
+        mobiscroll.toast({
+            message: event.event.title
+        });
+    }
+});
+
+mobiscroll.util.http.getJson('https://trial.mobiscroll.com/events/?vers=5', function (events) {
+    inst.setEvents(events);
+}, 'jsonp');
+</script>
+
+  <main>
+    <section>
+      <h2>Student Profile</h2>
+      <form>
+        <fieldset>
+          <legend>Personal Information</legend>
+          <label for="name">Name:</label>
+          <input type="text" id="name" name="name" value="John Doe"><br><br>
+          <label for="email">Email:</label>
+          <input type="email" id="email" name="email" value="johndoe@example.com"><br><br>
+          <label for="phone">Phone:</label>
+          <input type="tel" id="phone" name="phone" value="123-456-7890"><br><br>
+        </fieldset>
+
+        <fieldset>
+          <legend>Course Information</legend>
+          <label for="course">Course:</label>
+          <input type="text" id="course" name="course" value="Algebra"><br><br>
+          <label for="level">Level:</label>
+          <select id="level" name="level">
+            <option value="beginner">Beginner</option>
+            <option value="intermediate" selected>Intermediate</option>
+            <option value="advanced">Advanced</option>
+          </select><br><br>
+        </fieldset>
+
+        <input type="submit" value="Save Changes">
+      </form>
+    </section>
+  </main>
+
+
+<footer>
+<p>© 2023 Online Tutoring Center. All rights reserved.</p>
+</footer>
+</body>
+</html>
