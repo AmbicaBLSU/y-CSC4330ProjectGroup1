@@ -22,6 +22,11 @@ namespace EFCode.Controllers
             return View(model);
             //return RedirectToAction("Homepage", "Home");
         }
+        public IActionResult StudentView(SlotsViewModel model)
+        {
+            return View(model);
+            //return RedirectToAction("Homepage", "Home");
+        }
 
         public IActionResult Index()
         {
