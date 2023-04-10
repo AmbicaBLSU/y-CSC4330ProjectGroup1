@@ -48,6 +48,11 @@ namespace EFCode.Controllers
             // Do something with the date value
             //return View();
         }
+        public IActionResult TutorView(SlotsViewModel model)
+        {
+            return View(model);
+            //return RedirectToAction("Homepage", "Home");
+        }
 
         public IActionResult Privacy()
         {
