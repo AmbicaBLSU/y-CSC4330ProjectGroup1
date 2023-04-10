@@ -27,6 +27,20 @@ namespace EFCode.Controllers
             return View(model);
             //return RedirectToAction("Homepage", "Home");
         }
+        [HttpPost]
+        public IActionResult MyAppointments(string TutorName, SlotsViewModel model)
+        {
+            // Do something with the model property name
+            // ...
+
+            // Redirect back to the view or another action
+            StudentAppointmentStatus s = new StudentAppointmentStatus();
+            List<string> l = new List<string>();
+            l = s.ConnectToDatabase(TutorName);
+            model.Requests = l;
+            // return RedirectToAction("Index");
+            return View(model);
+        }
 
         public IActionResult Index()
         {
