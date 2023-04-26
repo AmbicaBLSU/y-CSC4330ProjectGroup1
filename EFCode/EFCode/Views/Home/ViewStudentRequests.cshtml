@@ -1,0 +1,33 @@
+@model SlotsViewModel
+<form asp-controller="Home" asp-action="MarkMessage" method="post">
+    @if (Model.Requests.Count != 0)
+    {
+        for (int i = 0; i < Model.Requests.Count; i++)
+        {
+            <div class="form-group">
+                <h4>@Model.Requests[i]</h4>
+                <label for="requestStatus_@i">Request Status:</label>
+                <div class="radio">
+                    <label>
+                        <input type="radio" asp-for="MessageStatus[i]" value="Markread" id="Markread_@i" />
+                        <span class="custom-radio"></span>
+                        Mark Read
+                    </label>
+                </div>
+                <div class="radio">
+                    <label>
+                        <input type="radio" asp-for="MessageStatus[i]" value="MarkUnread" id="MarkUnread_@i" />
+                        <span class="custom-radio"></span>
+                        Mark Unread
+                    </label>
+                </div>
+                @Html.HiddenFor(m => m.Requests[i], new { @value = Model.Requests })
+            </div>
+        }
+        <button type="submit" class="btn btn-primary">Submit</button>
+    }
+    else
+    {
+        <p>No Unread Requests</p>
+    }
+</form>
