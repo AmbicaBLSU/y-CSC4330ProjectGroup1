@@ -204,7 +204,13 @@
         <nav>
             <ul>
                 <li><a href="StudentView"><h3>Home</h3></a></li>
-                <li><a href="ContactCoordinator"><h3>Contact Coordinator</h3></a></li>
+                <li>
+                    @using (Html.BeginForm("ContactCoordinator", "Home", FormMethod.Post, new { @class = "send-requests-form" }))
+                    {
+                        <input type="hidden" id="Studentname" name="Studentname" value="@Model.StudentUserName" />
+                        <button type="submit" class="btn btn-link" style="border: none; background: none; color:white;padding: 0;"><h3>Contact Coordinator</h3></button>
+                    }
+                </li>
                 <li><a href="#"><h3>My Appointments</h3></a></li>
                 <li><a href="#"><h3>Profile</h3></a></li>
                 <li><a href="Homepage" style="color: red;"><h3>Logout</h3></a></li>
@@ -214,78 +220,21 @@
     <section>
         <h2>Available Tutors</h2>
         <div class="tutors">
-            <div class="tutor">
-                <h3>Tutor Name: John Doe</h3>
-                <p>Course: Introduction to Computer Science</p>
-                <p>Rating: 4.5/5</p>
-                <p>Email: johndoe@lsu.edu</p>
-                <form method="post" action="@Url.Action("DisplaySlots", "Home")">
-                    <input type="hidden" name="name" value="John Doe" />
-                    <input type="date" name="date" />
-                    <input type="hidden" id="Studentname" name="Studentname" value="@Model.StudentUserName" />
-                    <button type="submit">Check Availability</button>
-                </form>
-            </div>
-            <div class="tutor">
-                <h3>Tutor Name: Jane Smith</h3>
-                <p>Course: Introduction to Python</p>
-                <p>Rating: 4.8/5</p>
-                <p>Email: janesmith@lsu.edu</p>
-                <form method="post" action="@Url.Action("DisplaySlots", "Home")">
-                    <input type="hidden" name="name" value="Jane Smith" />
-                    <input type="date" name="date" />
-                    <input type="hidden" id="Studentname" name="Studentname" value="@Model.StudentUserName" />
-                    <button type="submit">Check Availability</button>
-                </form>
-            </div>
-            <div class="tutor">
-                <h3>Tutor Name: Robert Johnson</h3>
-                <p>Course: Data Structures using C++</p>
-                <p>Rating: 4.6/5</p>
-                <p>Email: robertjohnson@lsu.edu</p>
-                <form method="post" action="@Url.Action("DisplaySlots", "Home")">
-                    <input type="hidden" name="name" value="Robert Johnson" />
-                    <input type="date" name="date" />
-                    <input type="hidden" id="Studentname" name="Studentname" value="@Model.StudentUserName" />
-                    <button type="submit">Check Availability</button>
-                </form>
-            </div>
-            <div class="tutor">
-                <h3>Tutor Name: Sarah Kim</h3>
-                <p>Course: Introduction to Database Mangement System</p>
-                <p>Rating: 4.9/5</p>
-                <p>Email: sarahkim@lsu.edu</p>
-                <form method="post" action="@Url.Action("DisplaySlots", "Home")">
-                    <input type="hidden" name="name" value="Sarah Kim" />
-                    <input type="date" name="date" />
-                    <input type="hidden" id="Studentname" name="Studentname" value="@Model.StudentUserName" />
-                    <button type="submit">Check Availability</button>
-                </form>
-            </div>
-            <div class="tutor">
-                <h3>Tutor Name: Rose</h3>
-                <p>Course: Data Structures using java</p>
-                <p>Rating: 4.9/5</p>
-                <p>Email: rose@lsu.edu</p>
-                <form method="post" action="@Url.Action("DisplaySlots", "Home")">
-                    <input type="hidden" name="name" value="Rose" />
-                    <input type="date" name="date" />
-                    <input type="hidden" id="Studentname" name="Studentname" value="@Model.StudentUserName" />
-                    <button type="submit">Check Availability</button>
-                </form>
-            </div>
-            <div class="tutor">
-                <h3>Tutor Name: Jack</h3>
-                <p>Course: Introduction to C Language>
-                <p>Rating: 4.9/5</p>
-                <p>Email: jack@lsu.edu</p>
-                <form method="post" action="@Url.Action("DisplaySlots", "Home")">
-                    <input type="hidden" name="name" value="Jack" />
-                    <input type="date" name="date" />
-                    <input type="hidden" id="Studentname" name="Studentname" value="@Model.StudentUserName" />
-                    <button type="submit">Check Availability</button>
-                </form>
-            </div>
+            @foreach (var tutor in ViewBag.Tutors)
+            {
+                <div class="tutor">
+                    <h3>Tutor Name: @tutor.FirstName @tutor.LastName</h3>
+                    <p>Course: @tutor.Course</p>
+                    <p>Rating: @tutor.Rating</p>
+                 
+                    <form method="post" action="@Url.Action("DisplaySlots", "Home")">
+                        <input type="hidden" name="Name" value="@tutor.Username" />
+                        <input type="date" name="date" />
+                        <input type="hidden" id="Studentname" name="Studentname" value="@Model.StudentUserName" />
+                        <button type="submit">Check Availability</button>
+                    </form>
+                </div>
+            }
         </div>
     </section>
     <footer>
@@ -294,3 +243,5 @@
 </body>
 
 </html>
+
+
