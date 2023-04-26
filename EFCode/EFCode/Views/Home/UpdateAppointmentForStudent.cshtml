@@ -1,1 +1,154 @@
+@model SlotsViewModel
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Online Tutoring Center - Student Home Page</title>
+    <style>
+        body {
+            background-color: #f2f2f2;
+        }
 
+        header {
+            background-color: #333;
+            color: #fff;
+            padding: 20px;
+            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24);
+            text-align: center;
+        }
+
+        nav ul {
+            list-style: none;
+            margin: 0;
+            padding: 0;
+        }
+
+        nav li {
+            display: inline-block;
+            margin-right: 20px;
+        }
+
+        nav a {
+            color: #fff;
+            text-decoration: none;
+        }
+
+            nav a:hover {
+                color: #808080;
+            }
+        /* Dropdown and Button Styles */
+
+        body {
+            font-family: Arial, sans-serif;
+        }
+
+        h2 {
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+        }
+
+        .tutor {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            margin-bottom: 1rem;
+        }
+
+            .tutor form {
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+            }
+
+        select {
+            padding: 0.5rem;
+            font-size: 1rem;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            appearance: none;
+            cursor: pointer;
+        }
+
+            select:focus {
+                outline: none;
+                border-color: #333;
+            }
+
+        button {
+            padding: 0.5rem 1rem;
+            font-size: 1rem;
+            color: white;
+            background-color: #333;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            margin-top: 1rem;
+        }
+
+            button:hover {
+                background-color: #555;
+            }
+
+            button:focus {
+                outline: none;
+            }
+
+        footer {
+            background-color: #333;
+            color: #fff;
+            padding: 30px;
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Welcome to the Online Tutoring Center </h1>
+        <nav>
+            <ul>
+                <li><a href="CoordinatorView"> Home</a></li>
+                <li><a href="HomePage" style="color:red;"> Logout</a></li>
+
+            </ul>
+        </nav>
+    </header>
+<h2>Select the student to create an appointment for: </h2>
+<section>
+    <div class="tutor">
+        <form method="post" action="@Url.Action("UpdateAppointmentForStudent", "Home")">
+            @Html.DropDownListFor(m => m.studentUsernameList, new SelectList(Model.studentUsernameList))
+            @Html.DropDownListFor(m => m.TutorUserName, new SelectList(Model.TutorUserName))
+            <button type="submit">Select this Tutor</button>
+        </form>
+    </div>
+</section>
+@if (Model.Requests != null && Model.Requests.Count > 0)
+{
+    <h2>Choose an appointment to delete and request a new one</h2>
+    <ul>
+        @for (int i = 0; i < Model.Requests.Count; i += 2)
+        {
+            <li>
+                <form method="post" action="@Url.Action("BookAppointment", "Home")">
+                    <input type="hidden" name="StudentUserName" value="@Model.StudentUserName" />
+                    <input type="hidden" name="Name" value="@Model.Name" />
+                    <input type="hidden" name="Requests" value="@Model.Requests[i]" />
+                    @if (i + 1 < Model.Requests.Count)
+                    {
+                        <input type="hidden" name="Requests" value="@Model.Requests[i + 1]" />
+                        <button type="submit">@Model.Requests[i] - @Model.Requests[i + 1]</button>
+                    }
+                    else
+                    {
+                        <button type="submit">@Model.Requests[i]</button>
+                    }
+                </form>
+            </li>
+        }
+    </ul>
+}
+else
+{
+    <p>No booked appointments for this Student with the selected Tutor</p>
+}
+</body>
+</html>
