@@ -1,6 +1,4 @@
-@{
-    Layout = null;
-}
+@model SlotsViewModel
 
 <!DOCTYPE html>
 <html lang="en">
@@ -121,7 +119,6 @@
         <nav>
             <ul>
                 <li><a href="#"><h3>Home</h3></a></li>
-                <li><a href="ContactCoordinator"><h3>Contact Coordinator</h3></a></li>
                 <li><a href="#"><h3>My Appointments</h3></a></li>
                 <li><a href="#"><h3>Profile</h3></a></li>
                 <li><a href="Homepage" style="color: red;"><h3>Logout</h3></a></li>
@@ -130,12 +127,22 @@
     </header>
     <div class="mailbox">
         <h1>Contact Coordinator</h1>
-        <form id="contact-form">
-            <input type="text" name="name" placeholder="Enter your User Name" required>
-            <input type="email" name="email" placeholder="Enter your Email" required>
-            <textarea name="message"  placeholder="Your Message" required></textarea>
+        <form method="post" action="@Url.Action("RequestRecorded", "Home")">
+        @using (Html.BeginForm("RequestRecorded", "Home", FormMethod.Post, new { @class = "send-requests-form" }))
+        {
+                    @Html.LabelFor(model => model.UserType)
+                    @Html.DropDownListFor(model => model.UserType, new List<SelectListItem>
+                {
+                new SelectListItem { Text = "Tutor", Value = "Tutor" },
+                new SelectListItem { Text = "Student", Value = "Student" }
+                }, "Select User Type", new { @class = "form-control" })
+                <textarea name="message" for="UserMessage" placeholder="Your Message" required></textarea>
+            <input type="hidden" id="Studentname" name="Studentname" value="@Model.StudentUserName" />
+
             <button type="submit">Send Message</button>
+        }
         </form>
+        
     </div>
     <footer>
         <p>&copy; 2023 Online Tutoring Center. All rights reserved.</p>
